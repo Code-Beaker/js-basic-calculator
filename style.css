@@ -5,11 +5,21 @@
   --ghost-white: hsla(227, 100%, 98%, 1);
   --amethyst: hsla(305, 41%, 47%, 1);
   --charcoal: hsla(90, 1%, 31%, 1);
+
+  --size--2: clamp(0.7813rem, 0.7736rem + 0.0341vw, 0.8rem);
+  --size--1: clamp(0.9375rem, 0.9119rem + 0.1136vw, 1rem);
+  --size-0: clamp(1.125rem, 1.0739rem + 0.2273vw, 1.25rem);
+  --size-1: clamp(1.35rem, 1.2631rem + 0.3864vw, 1.5625rem);
+  --size-2: clamp(1.62rem, 1.4837rem + 0.6057vw, 1.9531rem);
+  --size-3: clamp(1.944rem, 1.7405rem + 0.9044vw, 2.4414rem);
+  --size-4: clamp(2.3328rem, 2.0387rem + 1.3072vw, 3.0518rem);
+  --size-5: clamp(2.7994rem, 2.384rem + 1.8461vw, 3.8147rem);
 }
 
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: "Clash Grotesk", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,7 +43,7 @@ body {
   text-align: right;
   padding-top: 1rem;
   padding-right: 1rem;
-  font-size: 1.25rem;
+  font-size: var(--size-1);
 }
 
 .calc__buttons {
@@ -53,10 +63,13 @@ body {
   width: 3.25rem;
   border: none;
   outline: none;
-  font-size: 1.25rem;
+  font-size: var(--size-0);
+  font-family: inherit;
   font-weight: bold;
   background-color: var(--charcoal);
   color: var(--ghost-white);
+  position: relative;
+  overflow: hidden;
   transition: 100ms ease-in-out;
 }
 
@@ -68,13 +81,31 @@ body {
   scale: 0.9;
 }
 
+.calc__buttons--btn::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 5rem;
+  background-color: white;
+  opacity: 0.25;
+  scale: 0;
+  transition: 200ms ease-in-out;
+}
+
+.calc__buttons--btn:active::after {
+  scale: 1.5;
+}
+
 .calc__equals {
   background-color: var(--emerald);
   color: var(--charcoal);
 }
 
 .calc__clear {
-  font-size: 1rem;
+  font-size: var(--size-0);
   display: block;
   width: 15rem;
   max-width: 100%;
